@@ -33,7 +33,7 @@ http {
 ```
 
 ## Atividade
-Criar um arquivo `docker-compose.yml` que implante cinco contêineres de modo a obter a arquitetura abaixo:
+Criar um arquivo `docker-compose.yaml` que implante cinco contêineres de modo a obter a arquitetura abaixo:
 
 O primeiro contêiner deve executar o Nginx configurado para balancear carga entre três contêineres do Wordpress (wordpress1, wordpress2 e wordpress3). Os três contêineres do Wordpress devem se conectar ao mesmo banco de dados MySQL, permitindo que todos produzam o mesmo conteúdo.
 Abaixo algumas informações para concluir a atividade:
