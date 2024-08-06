@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/caian/vagrant-vms/centosNginxDocker","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
