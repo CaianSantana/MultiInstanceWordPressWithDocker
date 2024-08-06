@@ -1,0 +1,74 @@
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - wordpress1
+      - wordpress2
+      - wordpress3
+    networks:
+      - web_network
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  wordpress1:
+    image: wordpress:5.4.2-php7.2-apache
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    networks:
+      - web_network
+      - internal_network
+
+  wordpress2:
+    image: wordpress:5.4.2-php7.2-apache
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    networks:
+      - web_network
+      - internal_network
+
+  wordpress3:
+    image: wordpress:5.4.2-php7.2-apache
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    networks:
+      - web_network
+      - internal_network
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - internal_network
+
+volumes:
+  db_data:
+  wp-content:
+
+networks:
+  internal_network:
+    driver: bridge
+  web_network:
+    driver: bridge
