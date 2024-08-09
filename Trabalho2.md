@@ -60,7 +60,7 @@ class WebsiteUser(HttpLocust):
     max_wait = 9000
 ```
 
-Executando o Locust num Contêiner Docker
+## Executando o Locust num Contêiner Docker
 
 Existem diversas formas de executar o Locust. Utilizando contêineres Docker é a mais prática delas e é a forma que utilizaremos nessa atividade. A seguir, um exemplo utilizando a imagem grubykarol/locust.
 
@@ -75,13 +75,16 @@ docker run --rm \
 Atenção para o endereço do site a ser testado! Deve ser utilizado o mesmo endereço ou nome do serviço declarado no docker-compose no Trabalho 1.
 
 A tabela abaixo mostra a lista de variáveis que podem ser utilizadas com o Locust, e que devem ser passadas via variáveis de ambiente através do parâmetro -e ou da seção environments: no docker-compose.
-Variável	Descrição	Padrão	Exemplo
-LOCUST_FILE	Script que será utilizado nos testes	locustfile.py	
-ATTACKED_HOST	A URL para teste. Obrigatório.	-	http://example.com
-LOCUST_OPTS	Opções adicionais do Locust	-	"-c 10 -r 10"
+| Variável  | Descrição  | Padrão  |  Exemplo |
+|---|---|---|---|
+| LOCUST_FILE  | Script que será utilizado nos testes  |  locustfile.py |   | 
+| ATTACKED_HOST  | A URL para teste. Obrigatório.	  |   | http://example.com  | 
+|  LOCUST_OPTS |  Opções adicionais do Locust |   | "-c 10 -r 10"  | 
 
-Veja todos os parâmetros do Locust neste link.
-Atividade
+
+Veja todos os parâmetros do Locust neste [link](https://docs.locust.io/en/stable/quickstart.html#start-locust ).
+
+## Atividade
 
 Realizar testes de carga utilizando o gerador de carga Locust para avaliar o desempenho de diversos cenários de uso do Wordpress, variando a arquitetura da aplicação (número de instâncias do Wordpress) e variando a quantidade de usuários gerados pelo Locust. O contêiner do Locust deve ser definido e adicionado ao docker-compose criado no Trabalho 1. Alternativamente, você pode executar o Locust localmente, na máquina hospedeira, sem utilizar o Docker. Nesse caso, certifique-se de que o contêiner do NGINX é acessível fora do Docker, mapeando a porta do serviço para a porta correspondente da máquina hospedeira.
 Cenários de Teste
@@ -89,6 +92,6 @@ Cenários de Teste
     Acessar uma postagem contendo um texto de aproximadamente 100 KB;
     Acessar uma postagem contendo uma imagem de aproximadamente 10 MB;
 
-Entregáveis
+## Entregáveis
 
 Cada cenário de teste deve ser executado com três diferentes números de usuários gerados pelo Locust (por exemplo, 10, 100, e 1000), e três diferentes números de instâncias do WordPress (por exemplo, 1, 2, e 3). Os resultados de cada cenário deverão ser visualizados na forma de gráficos, com o número de usuários representado no eixo X, os valores das métricas coletadas pelo Locust (por exemplo, mediana ou percentil 95 do tempo de resposta, requisições por segundo, etc.) no eixo Y, e a quantidade de instâncias do WordPress em diferentes barras ou curvas do gráfico.
