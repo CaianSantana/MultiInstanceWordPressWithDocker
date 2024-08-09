@@ -21,7 +21,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - ./html/:/var/www/html/
     networks:
       - web_network
       - internal_network
@@ -34,7 +34,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - ./html/:/var/www/html/
     networks:
       - web_network
       - internal_network
@@ -47,7 +47,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - ./html/:/var/www/html/
     networks:
       - web_network
       - internal_network

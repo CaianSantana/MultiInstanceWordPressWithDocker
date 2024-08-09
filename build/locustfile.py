@@ -1,8 +1,16 @@
-from locust import HttpUser, between, task
+from locust import HttpUser, TaskSet, task, between
 
-class WebsiteUser(HttpUser):
-    wait_time = between(1, 5)
-
+class UserBehavior(TaskSet):
     @task
-    def load_main_page(self):
+    def index(self):
         self.client.get("/")
+
+    @task(3)
+    def view_post(self):
+        self.client.get("/?p=12")
+
+
+        
+class WebsiteUser(HttpUser):
+    tasks = [UserBehavior]
+    wait_time = between(1, 5)
