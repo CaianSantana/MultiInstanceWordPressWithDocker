@@ -1,14 +1,15 @@
 from locust import HttpUser, TaskSet, task, between
 
 class UserBehavior(TaskSet):
+    
     @task
     def index(self):
-        self.client.get("/")
-
-    @task(3)
+        self.client.get("/?p=1")
+    '''
+    @task
     def view_post(self):
-        self.client.get("/?p=12")
-
+        self.client.get("/?p=5")
+    '''
 
         
 class WebsiteUser(HttpUser):

@@ -6,8 +6,8 @@ services:
       - "80:80"
     depends_on:
       - wordpress1
-      - wordpress2
-      - wordpress3
+      #- wordpress2
+      #- wordpress3
     networks:
       - web_network
     volumes:
@@ -26,31 +26,31 @@ services:
       - web_network
       - internal_network
 
-  wordpress2:
-    image: wordpress:5.4.2-php7.2-apache
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-    volumes:
-      - ./html/:/var/www/html/
-    networks:
-      - web_network
-      - internal_network
+  #wordpress2:
+  #  image: wordpress:5.4.2-php7.2-apache
+  #  environment:
+  #    WORDPRESS_DB_HOST: db:3306
+  #    WORDPRESS_DB_USER: wordpress
+  #    WORDPRESS_DB_PASSWORD: wordpress
+  #    WORDPRESS_DB_NAME: wordpress
+  #  volumes:
+  #    - ./html/:/var/www/html/
+  #  networks:
+  #    - web_network
+  #    - internal_network
 
-  wordpress3:
-    image: wordpress:5.4.2-php7.2-apache
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-    volumes:
-      - ./html/:/var/www/html/
-    networks:
-      - web_network
-      - internal_network
+  #wordpress3:
+  #  image: wordpress:5.4.2-php7.2-apache
+  #  environment:
+  #    WORDPRESS_DB_HOST: db:3306
+  #    WORDPRESS_DB_USER: wordpress
+  #    WORDPRESS_DB_PASSWORD: wordpress
+  #    WORDPRESS_DB_NAME: wordpress
+  #  volumes:
+  #    - ./html/:/var/www/html/
+  #  networks:
+  #    - web_network
+  #    - internal_network
 
   db:
     image: mysql:5.7
@@ -72,7 +72,19 @@ services:
       - ./:/mnt/locust
     command: -f /mnt/locust/locustfile.py --master -H http://master:8089
   
-  worker:
+  worker1:
+    image: locustio/locust
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host master
+  
+  worker2:
+    image: locustio/locust
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host master
+    
+  worker3:
     image: locustio/locust
     volumes:
       - ./:/mnt/locust
